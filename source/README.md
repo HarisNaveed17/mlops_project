@@ -1,5 +1,21 @@
 # Workflow to Access VM and Persistent Storage on Chameleon Cloud
 
+## Mount Persistent Storage and unzip source offline data into storage
+```bash
+lsblk
+sudo mkfs.ext4 /dev/vdb
+sudo mkdir /mnt/block
+sudo mount /dev/vdb /mnt/block
+
+sudo unzip /home/cc/mlops_project/source/data/raw data.zip -d /mnt/block/data/
+sudo mv "/mnt/block/data/raw data" /mnt/block/data/raw_data
+
+sudo unzip /home/cc/mlops_project/source/data/player_data.zip -d /mnt/block/data/
+
+mkdir -p /mnt/block/data/final_datasets
+#sudo unzip /home/cc/mlops_project/source/data/final_datasets.zip -d /mnt/block/data/
+```
+
 ## Terminal 1 (Local)
 ```bash
 ssh -i ~/.ssh/id_rsa_mlops_proj cc@129.114.25.26
